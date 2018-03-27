@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fono Api</title>
+	  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	   <script src="api.js" type="text/javascript" charset="utf-8" async defer></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<div class="row">
+		<p>Search for your device</p>
+		<div class="form-group">
+	    	<input class="text form-control" type="text" ></input> 
+	    	<br>
+	    	<input class="text2 form-control" type="text" ></input>
+	  	</div>
+	  	<div class="form-group">
+<a href="#" class="button btn btn-primary btn-block">submit</a>	
+</div>
+</div>
+
+</div>
+<div class="container">
+<div class="row">
+<div class="col-sm-6 device1">me</div>
+<div class="col-sm-6 device2">pussy</div>
+</div>
+</div>
+<script  type="text/javascript" charset="utf-8" async defer>
+
+	$('.button').on('click',function()
+	{-
+		$('.device1').fonoApi({
+		token : "f027eaf8a1108beaab2fc9a2c9c602e55fc797bb6ef94a18",
+		device : $('.text').val(),
+		limit : 50,
+		template : function() {
+					console.log(arguments);
+				return $.map(arguments, function(obj, i) {
+				 	content  = '<h3>'+ obj.DeviceName + '</h3>';
+				content += '<table class="table table-striped">';
+				content += '<tr><th>info</th><th>Description</th></tr>';
+				
+				for(var key in obj){
+				  content += "<tr><td>" + key + "</td><td>" + obj[key] + "</td><tr>";
+				}
+
+				content += "</table>";
+					return content;
+
+
+				 });
+				
+		}
+
+});
+		$('.device2').fonoApi({
+		token : "f027eaf8a1108beaab2fc9a2c9c602e55fc797bb6ef94a18",
+		device : $('.text2').val(),
+		limit : 50,
+		template : function() {
+					//console.log(arguments);
+				return $.map(arguments, function(obj, i) {
+				 	content  = '<h3>'+ obj.DeviceName + '</h3>';
+				content += '<table class="table table-striped">';
+				content += '<tr><th>info</th><th>Description</th></tr>';
+				
+				for(var key in obj){
+				  content += "<tr><td>" + key + "</td><td>" + obj[key] + "</td><tr>";
+				}
+
+				content += "</table>";
+					return content;
+
+
+				 });
+				
+		}
+
+});
+	});
+
+
+
+	</script>
+</body>
+</html>
